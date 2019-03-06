@@ -11,14 +11,13 @@ print """           _  _____  __
 | | | (_| | |_ ___) || |
 |_|  \__,_|\__|____/ |_| """
 print "\n"
-print "\n"
 print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 print "@@Knock knock knocking on heaven's door@@"
 print "@@-----------Author: rat31-------------@@"
 print "@@-------Name: pk(portknocker)---------@@"
 print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 print "\n"
-print "\n"
+
 
 if len(sys.argv) < 2:
   print "Usage               : python pk.py <target IP> <port_sequence> <timeout>"
