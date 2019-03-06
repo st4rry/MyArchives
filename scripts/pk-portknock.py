@@ -41,11 +41,11 @@ for po in (intport):
         s = socket(AF_INET, SOCK_STREAM)
         s.settimeout(delay)
         s.connect((ip, po))
-        print s.recv(1024)
-            #r = eval(s.recv(1024))
-            #print "received:", r
+        #print s.recv(1024)
+        rec = eval(s.recv(1024))
+        print "received:", rec
     except:
         pass
         time.sleep(delay)
-
     print "knocked out"
+print "DONE!"
