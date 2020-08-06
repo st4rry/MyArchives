@@ -1,0 +1,7 @@
+Netsh advfirewall firewall set rule group=”remote desktop” new enable=yes
+Reg add “HKEY_LOCAL_MACHINE\SYSTEM\CurentControlSet\Control\Terminal Server”  /v fDenyTSConnections /t REG_DWORD /d 0 /f
+Netsh advfirewall firewall set rule group=”remote desktop” new enable=yes
+Reg add “HKEY_LOCAL_MACHINE\SYSTEM\CurRentControlSet\Control\Terminal Server”  /v fDenyTSConnections /t REG_DWORD /d 1 /f
+Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" –Value 0
+Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+

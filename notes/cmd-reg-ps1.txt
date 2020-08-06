@@ -1,0 +1,31 @@
+# To hide user on login screen
+3. reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\WinLogon\SpecialAccounts\UserList" /v invisible /t reg_dword /d 0
+
+
+# To enable remote desktop without password
+reg add HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v LimitBlankPasswordUse /t REG_DWORD /D 0
+
+# To disable remote desktop without password
+reg delete HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v 
+
+
+# firewall command (netsh)
+https://support.microsoft.com/en-us/help/947709/how-to-use-the-netsh-advfirewall-firewall-context-instead-of-the-netsh
+
+# Remote Desktop Enable/Disable
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /
+
+#To enable Remote assistance:
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 1 /
+
+
+If you are using PowerShell 3.0 or newer, you could try this:
+
+<Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri 'https://some.remote.private.location/myfile.ps1' -OutFile 'c:\Windows\Temp\myfile.ps1' -UseBasicParsing -Credential (New-Object PSCredential('user123', (ConvertTo-SecureString -AsPlainText -Force -String 'password123')))"</Path>
+
+In PowerShell 2.0:
+
+<Path>powershell -NoLogo -Command "$webClient = new-object System.Net.WebClient; $webClient.Credentials = new-object System.Net.NetworkCredential('user123', 'password123'); $webClient.DownloadFile('https://some.remote.private.location/myfile.ps1', 'c:\Windows\Temp\myfile.ps1')"</Path>

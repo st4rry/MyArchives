@@ -1,0 +1,4 @@
+ nmap -vv -Pn -sSV -pT:1-65535 -T4 -A --script-args="timelimit=5" --host-timeout=180m --script=default,banner,discovery 
+
+
+The python library for certstream is a nice recommendation to look into if you know how to code, this watches new ssl certificates that are published and contain the subdomains that they are issued for. 

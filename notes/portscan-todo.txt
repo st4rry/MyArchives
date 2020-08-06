@@ -1,0 +1,45 @@
+# This is to scan a network in effencitent way.
+
+
+#Ping-Sweep bash script
+
+#!/bin/bash
+
+network=$1
+for ip in $(seq 1 254); do 
+ping -c 1 $network.$ip| grep "bytes from"|cut -d" " -f4| cut -d":" -f1 & 
+done
+
+
+#export IP address
+export ip = 
+
+#Discover active IPs usign ARP on the network: 
+arp-scan $ip/24
+
+Discover IP Mac and Mac vendors from ARP
+netdiscover -r $ip/24
+
+#Netcat port Scanning
+nc -nvv -w 1 -z $ip 3388-3390
+
+#Ping scan
+nmap -sn $ip/24
+
+#Quick Scan Plus:
+nmap -sV -T4 -O -F --version-light $ip/24 -oA quickscanplus-box-owner-dept-comany
+
+Enumeration Scan
+nmap -p 1-65535 -Pn -sS -T4 $ip/24 -oA enumallports-box-owner-dept-company
+
+#Enumeration Scan on discovered Ports
+nmap -p "specific discovered ports" -sV -sS -A -T4 $ip/24 -oA enumservice-box-owner-dept-company
+
+#Enumeration Scan All Ports TCP / UDP and output to all files
+nmap -v -sU -sS -p- -A -T4 $ip -oA enumalltcpudpports-box-owner-dept-company
+
+#Enumeration Scan default safe scripts
+nmap -sV -sC -p "specific discovered ports" $ip -oA enum-defaultsafescripts-box-owner-dept-company
+
+
+ 

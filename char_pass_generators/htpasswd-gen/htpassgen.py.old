@@ -1,0 +1,43 @@
+#!/usr/bin/python
+import hashlib
+import argparse
+from urllib2 import urlopen
+import os
+import sys
+
+print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+print "@@         htpasswd Generator          @@"
+print "@@-----------Author: starry------------@@"
+print "@@-----------Name: htpassgen-----------@@"
+print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+print "\n"
+
+
+if len(sys.argv) < 2:
+  print "Usage               : python htpassgen.py <username> <passwd>"
+  print "Example             : python htpassgen.py starry starry57422Y"
+  sys.exit(0)
+
+username = sys.argv[1]
+passwd   = sys.argv[2]
+
+#print "preparing salt...\n"
+
+#url = 'https://slackbuilds.org/ChangeLog.txt'
+#with open('words.txt','w') as f:
+#    f.write(urlopen(url).read())
+
+#salts= open('words.txt','r').read().split("\n")
+
+def hashing_method(passwd_hash):
+    hashed = format(base64.b64encode(hashlib.md5(passwd_hash).hexdigest()))
+    
+    print 'Your hash for htpasswd is : '+username +':$apr1$'+ hashed
+
+def main():
+    print 'Hashing Done!\n...'
+    passwd_hash = passwd
+    hashing_method(passwd_hash)
+
+if __name__ == '__main__':
+    main()
